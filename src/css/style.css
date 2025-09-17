@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+/* Performance optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
 :root {
     /* Paleta de cores */
     --color-black: #000000;
@@ -37,89 +48,22 @@ body {
     position: relative;
 }
 
-/* Loading Screen */
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--color-black);
-    background-image: url('../img/intro.webp');
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: 10000;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-    min-height: 100vh;
-    min-height: 100dvh;
+/* Melhorar foco para acessibilidade */
+*:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
 }
 
-.loading-screen.fade-out {
-    opacity: 0;
-    visibility: hidden;
+/* Remover outline padrão e adicionar customizado */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
 }
 
-/* Overlay escuro para melhor legibilidade do loading */
-.loading-screen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-}
-
-.loading-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    animation: fadeInScale 1s ease-out;
-    text-align: center;
-}
-
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 4px solid rgba(212, 175, 55, 0.2);
-    border-top: 4px solid var(--color-gold);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-}
-
-.loading-text {
-    position: absolute;
-    bottom: 50px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 2;
-    animation: fadeInUp 0.8s ease-out 0.5s both;
-    padding: 0 20px;
-}
-
-.loading-text h3 {
-    font-family: var(--font-title);
-    color: var(--color-gold);
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.loading-text p {
-    color: var(--color-ivory);
-    font-size: 1.1rem;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
 /* Video Background */
 .video-background {
@@ -792,6 +736,204 @@ section {
     line-height: 1.6;
 }
 
+/* Gallery Section */
+.gallery {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    padding: var(--section-padding);
+}
+
+.gallery-carousel {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    width: 400%; /* 4 slides (2 originais + 2 duplicados) */
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    width: 25%; /* 100% / 4 slides */
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background: var(--color-black);
+}
+
+/* Controles do carrossel */
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.carousel-btn {
+    background: rgba(212, 175, 55, 0.8);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn:hover {
+    background: var(--color-gold);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.carousel-btn i {
+    color: var(--color-white);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Indicadores */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-gold);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: var(--color-gold);
+    transform: scale(1.2);
+}
+
+.indicator:hover {
+    background: var(--color-rose);
+    border-color: var(--color-rose);
+}
+
+/* CTA Button */
+.gallery-cta {
+    text-align: center;
+    margin-top: 50px;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+
+.cta-title {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: var(--color-gold);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.cta-subtitle {
+    color: var(--color-ivory);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gradient-gold-rose);
+    color: var(--color-white);
+    text-decoration: none;
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-gold);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    background: var(--color-rose);
+    border-color: var(--color-rose);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+}
+
+.cta-button i {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+.cta-button span {
+    font-family: var(--font-text);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.cta-note {
+    color: var(--color-ivory);
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+    opacity: 0.9;
+}
+
 /* Contact Section */
 .contact {
     background: rgba(0, 0, 0, 0.4);
@@ -1059,6 +1201,32 @@ section {
     font-weight: 400;
 }
 
+.footer-dev-info {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-dev-info p {
+    color: var(--color-ivory);
+    font-size: 0.8rem;
+    margin: 0;
+    font-weight: 300;
+    text-align: center;
+}
+
+.footer-dev-info a {
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-dev-info a:hover {
+    color: var(--color-rose);
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     /* Centralizar background no mobile */
@@ -1226,6 +1394,52 @@ section {
         grid-template-columns: 1fr;
     }
     
+    /* Gallery responsivo */
+    .gallery-carousel {
+        max-width: 100%;
+        margin: 0 10px;
+    }
+    
+    .carousel-container {
+        height: 400px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-btn i {
+        font-size: 14px;
+    }
+    
+    .carousel-controls {
+        padding: 0 10px;
+    }
+    
+    /* CTA Button responsivo */
+    .gallery-cta {
+        margin-top: 30px;
+    }
+    
+    
+    .cta-title {
+        font-size: 1.5rem;
+    }
+    
+    .cta-subtitle {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+    
+    .cta-button i {
+        font-size: 1.2rem;
+    }
+    
     /* Footer mobile - esconder logo e centralizar texto */
     .footer-content {
         justify-content: center;
@@ -1243,6 +1457,11 @@ section {
         font-size: 0.85rem;
     }
     
+    .footer-dev-info p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+    
     .section-title {
         font-size: 2rem;
     }
@@ -1258,35 +1477,6 @@ section {
         font-size: 16px;
     }
     
-    /* Loading responsivo */
-    .loading-screen {
-        background-attachment: scroll;
-        background-position: center center;
-        background-size: contain;
-        min-height: 100vh;
-        min-height: 100dvh; /* Dynamic viewport height para mobile */
-    }
-    
-    .spinner {
-        width: 50px;
-        height: 50px;
-        border-width: 3px;
-    }
-    
-    .loading-text {
-        bottom: 30px;
-        left: 0;
-        right: 0;
-        padding: 0 20px;
-    }
-    
-    .loading-text h3 {
-        font-size: 1.5rem;
-    }
-    
-    .loading-text p {
-        font-size: 1rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1303,16 +1493,6 @@ section {
         min-height: 100%;
     }
     
-    /* Loading screen para mobile pequeno */
-    .loading-screen {
-        background-size: contain;
-        background-position: center center;
-        min-height: 100vh;
-        min-height: 100dvh;
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-    }
     
     /* Garantir centralização do background hero em telas muito pequenas */
     .hero-background img {
@@ -1329,6 +1509,53 @@ section {
     
     .service-card {
         padding: 30px 20px;
+    }
+    
+    /* Gallery mobile pequeno */
+    .carousel-container {
+        height: 300px;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .carousel-btn i {
+        font-size: 12px;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+    
+    /* CTA Button mobile pequeno */
+    .gallery-cta {
+        margin-top: 25px;
+    }
+    
+    
+    .cta-title {
+        font-size: 1.3rem;
+    }
+    
+    .cta-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        gap: 8px;
+    }
+    
+    .cta-button i {
+        font-size: 1.1rem;
+    }
+    
+    .cta-note {
+        font-size: 0.8rem;
     }
     
     .contact-unified-card {
@@ -1377,6 +1604,11 @@ section {
     .footer-copyright p {
         font-size: 0.8rem;
         line-height: 1.4;
+    }
+    
+    .footer-dev-info p {
+        font-size: 0.7rem;
+        line-height: 1.3;
     }
     
     .contact-item {
@@ -1579,37 +1811,9 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Loading responsivo para telas pequenas */
-@media (max-width: 480px) {
-    
-    .spinner {
-        width: 40px;
-        height: 40px;
-        border-width: 2px;
-    }
-    
-    .loading-text {
-        bottom: 20px;
-        left: 0;
-        right: 0;
-        padding: 0 15px;
-    }
-    
-    .loading-text h3 {
-        font-size: 1.2rem;
-    }
-    
-    .loading-text p {
-        font-size: 0.9rem;
-    }
-}
 
 /* Seleção de texto */
-::selection {
-    background: var(--color-gold);
-    color: var(--color-black);
-}
-
+::selection,
 ::-moz-selection {
     background: var(--color-gold);
     color: var(--color-black);

@@ -1,133 +1,133 @@
 // JavaScript para interatividade da landing page
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Controlar video background
-    const videoBackground = document.querySelector('.video-background video');
-    if (videoBackground) {
-        // Pausar vídeo em dispositivos móveis para economizar bateria
-        if (window.innerWidth <= 768) {
-            videoBackground.pause();
+// Módulo de controle de vídeo
+const VideoController = {
+    init() {
+        const videoBackground = document.querySelector('.video-background video');
+        if (videoBackground) {
+            this.setupVideo(videoBackground);
         }
-        
-        // Pausar vídeo quando a página não está visível
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                videoBackground.pause();
-            } else {
-                videoBackground.play();
-            }
-        });
-    }
+    },
     
-    // Controlar loading screen
-    const loadingScreen = document.getElementById('loadingScreen');
-    
-    // Função para esconder o loading
-    function hideLoading() {
-        if (loadingScreen) {
-            loadingScreen.classList.add('fade-out');
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 500);
-        }
-    }
-    
-    // Esconder loading quando a página estiver completamente carregada
-    window.addEventListener('load', function() {
-        // Adicionar um pequeno delay para mostrar o loading
-        setTimeout(hideLoading, 1500);
-    });
-    
-    // Fallback: esconder loading após 3 segundos máximo
-    setTimeout(hideLoading, 3000);
-    // Menu mobile com navigation drawer
-    const hamburger = document.querySelector('#hamburger');
-    const navDrawer = document.querySelector('#navDrawer');
-    const drawerClose = document.querySelector('#drawerClose');
-    const drawerOverlay = document.querySelector('.drawer-overlay');
-    
-    // Abrir drawer
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.add('active');
-        navDrawer.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Previne scroll do body
-    });
-    
-    // Fechar drawer
-    function closeDrawer() {
-        hamburger.classList.remove('active');
-        navDrawer.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Restaura scroll do body
-    }
-    
-    drawerClose.addEventListener('click', closeDrawer);
-    drawerOverlay.addEventListener('click', closeDrawer);
-    
-    // Fechar drawer ao clicar em um link
-    document.querySelectorAll('.drawer-nav a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Pequeno delay para permitir que a animação de clique seja visível
-            setTimeout(closeDrawer, 150);
-        });
-    });
-    
-    // Fechar drawer com ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navDrawer.classList.contains('active')) {
-            closeDrawer();
-        }
-    });
-    
-    // Scroll suave para links âncora
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offsetTop = target.offsetTop - 80; // Ajuste para o header fixo
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
+    setupVideo(video) {
+        const playVideo = () => {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    console.log('Erro ao reproduzir vídeo:', error);
+                    setTimeout(playVideo, 1000);
                 });
             }
+        };
+        
+        playVideo();
+        video.addEventListener('loadeddata', playVideo);
+        video.addEventListener('canplay', playVideo);
+        
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                video.pause();
+            } else {
+                playVideo();
+            }
         });
-    });
-    
-    // Header transparente com blur no scroll (exceto na home)
-    const header = document.querySelector('.header');
-    const heroSection = document.querySelector('.hero');
-    let lastScrollTop = 0;
-    let ticking = false;
-    
-    function updateHeader() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Aplicar blur assim que começar a rolar (scrollTop > 0)
-        if (scrollTop > 0) {
-            // Com scroll: navbar com blur
-            header.classList.remove('in-home');
-            header.classList.add('scrolled');
-        } else {
-            // No topo: navbar transparente sem blur
-            header.classList.add('in-home');
-            header.classList.remove('scrolled');
-        }
+        document.addEventListener('touchstart', playVideo, { once: true });
+        document.addEventListener('click', playVideo, { once: true });
+    }
+};
+
+// Módulo de navegação
+const NavigationController = {
+    init() {
+        this.setupMobileMenu();
+        this.setupSmoothScroll();
+        this.setupHeaderScroll();
+    },
+    
+    setupMobileMenu() {
+        const hamburger = document.querySelector('#hamburger');
+        const navDrawer = document.querySelector('#navDrawer');
+        const drawerClose = document.querySelector('#drawerClose');
+        const drawerOverlay = document.querySelector('.drawer-overlay');
         
-        lastScrollTop = scrollTop;
-        ticking = false;
+        if (!hamburger || !navDrawer) return;
+        
+        const closeDrawer = () => {
+            hamburger.classList.remove('active');
+            navDrawer.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.add('active');
+            navDrawer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        drawerClose?.addEventListener('click', closeDrawer);
+        drawerOverlay?.addEventListener('click', closeDrawer);
+        
+        document.querySelectorAll('.drawer-nav a').forEach(link => {
+            link.addEventListener('click', () => setTimeout(closeDrawer, 150));
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navDrawer.classList.contains('active')) {
+                closeDrawer();
+            }
+        });
+    },
+    
+    setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
+            });
+        });
+    },
+    
+    setupHeaderScroll() {
+        const header = document.querySelector('.header');
+        if (!header) return;
+        
+        let ticking = false;
+        
+        const updateHeader = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 0) {
+                header.classList.remove('in-home');
+                header.classList.add('scrolled');
+            } else {
+                header.classList.add('in-home');
+                header.classList.remove('scrolled');
+            }
+            
+            ticking = false;
+        };
+        
+        const requestTick = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        };
+        
+        window.addEventListener('scroll', requestTick, { passive: true });
+        updateHeader();
     }
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateHeader);
-            ticking = true;
-        }
-    }
-    
-    window.addEventListener('scroll', requestTick, { passive: true });
-    
-    // Inicializar estado da navbar
-    updateHeader();
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar módulos
+    VideoController.init();
+    NavigationController.init();
     
     // Botão voltar ao topo
     const backToTop = document.querySelector('#backToTop');
@@ -423,6 +423,128 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentYearElement = document.getElementById('currentYear');
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
+    }
+    
+    // Carrossel de imagens
+    const carouselTrack = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    if (carouselTrack && prevBtn && nextBtn) {
+        let currentSlide = 0;
+        const totalSlides = 2; // Apenas as imagens originais (sem duplicatas)
+        const slideWidth = 25; // 25% por slide (100% / 4 slides)
+        
+        function updateCarousel() {
+            const translateX = -currentSlide * slideWidth;
+            carouselTrack.style.transform = `translateX(${translateX}%)`;
+            
+            // Atualizar indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        // Event listeners para botões
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            pauseAutoPlay();
+        });
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            pauseAutoPlay();
+        });
+        
+        // Event listeners para indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+                pauseAutoPlay();
+            });
+        });
+        
+        // Auto-play do carrossel (mais rápido e suave)
+        let autoPlayInterval = setInterval(nextSlide, 3000); // Reduzido para 3 segundos
+        
+        // Pausar auto-play no hover e retomar quando sair
+        const carousel = document.querySelector('.gallery-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoPlayInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                autoPlayInterval = setInterval(nextSlide, 3000);
+            });
+        }
+        
+        // Pausar auto-play quando a página não está visível
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(autoPlayInterval);
+            } else {
+                autoPlayInterval = setInterval(nextSlide, 3000);
+            }
+        });
+        
+        // Pausar auto-play quando o usuário interage manualmente
+        function pauseAutoPlay() {
+            clearInterval(autoPlayInterval);
+            // Retomar após 10 segundos de inatividade
+            setTimeout(() => {
+                autoPlayInterval = setInterval(nextSlide, 3000);
+            }, 10000);
+        }
+        
+        // Suporte a touch/swipe
+        let startX = 0;
+        let endX = 0;
+        
+        carouselTrack.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        carouselTrack.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide(); // Swipe left - próxima imagem
+                } else {
+                    prevSlide(); // Swipe right - imagem anterior
+                }
+                pauseAutoPlay();
+            }
+        }
+        
+        // Suporte a teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+                pauseAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+                pauseAutoPlay();
+            }
+        });
     }
     
     console.log('Studio Puro Stillu\'s - Landing Page carregada com sucesso! ✨');

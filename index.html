@@ -8,7 +8,6 @@
     <meta name="keywords" content="salão de beleza, estética, Pontal do Paraná, cortes femininos, mechas, hidratação, progressiva, botox capilar, manicure, pedicure">
     <meta name="author" content="Studio Puro Stillu's">
     <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -38,30 +37,30 @@
     <link rel="stylesheet" href="src/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Analytics -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
 </head>
 <body>
     <!-- Video Background -->
     <div class="video-background">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline webkit-playsinline preload="auto">
             <source src="src/img/background.mp4" type="video/mp4">
             Seu navegador não suporta vídeos HTML5.
         </video>
     </div>
 
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-spinner">
-            <div class="spinner"></div>
-        </div>
-        <div class="loading-text">
-            <h3>Studio Puro Stillu's</h3>
-            <p>Carregando...</p>
-        </div>
-    </div>
-
     <!-- Botão flutuante WhatsApp -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/5541999994619" target="_blank" class="whatsapp-btn">
+        <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário no Studio Puro Stillu's" target="_blank" class="whatsapp-btn">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -73,7 +72,7 @@
 
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar" id="navigation" role="navigation" aria-label="Menu principal">
             <div class="nav-container">
                 <div class="logo">
                     <a href="#home">
@@ -123,6 +122,7 @@
     </div>
 
     <!-- Hero Section -->
+    <main id="main-content">
     <section id="home" class="hero">
         <div class="hero-background">
             <img src="src/img/background.webp" alt="Studio Puro Stillu's">
@@ -137,7 +137,10 @@
                     💎 Mais que cliente, você é o nosso maior patrimônio
                 </p>
                 <div class="hero-buttons">
-                    <a href="https://wa.me/5541999994619" target="_blank" class="btn btn-primary">Agende seu horário agora</a>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário no Studio Puro Stillu's" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i>
+                        Agende seu horário agora
+                    </a>
                     <a href="#contact" class="btn btn-secondary">Fale conosco</a>
                 </div>
             </div>
@@ -218,6 +221,61 @@
         </div>
     </section>
 
+    <!-- Galeria de Serviços -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Nossos Trabalhos</h2>
+            <div class="gallery-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide">
+                            <img src="src/img/services/01.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="src/img/services/02.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
+                        </div>
+                        <!-- Duplicar imagens para loop infinito -->
+                        <div class="carousel-slide">
+                            <img src="src/img/services/01.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="src/img/services/02.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controles do carrossel -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Imagem anterior">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-btn" id="nextBtn" aria-label="Próxima imagem">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Indicadores -->
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <button class="indicator active" data-slide="0" aria-label="Ir para imagem 1"></button>
+                    <button class="indicator" data-slide="1" aria-label="Ir para imagem 2"></button>
+                </div>
+
+                <br>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="gallery-cta">
+                <h3 class="cta-title">Pronta para se transformar?</h3>
+                <p class="cta-subtitle">Agende agora e garante seu horário preferido!</p>
+                <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário no Studio Puro Stillu's" target="_blank" class="cta-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Agende seu horário agora</span>
+                </a>
+                <p class="cta-note">✨ Resposta rápida e atendimento personalizado</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Contato -->
     <section id="contact" class="contact">
         <div class="container">
@@ -291,10 +349,14 @@
                 </div>
                 <div class="footer-copyright">
                     <p>&copy; <span id="currentYear"></span> Studio Puro Stillu's. Todos os direitos reservados.</p>
+                    <div class="footer-dev-info">
+                        <p>Desenvolvido por <a href="https://github.com/corpsolutionsdev" target="_blank" rel="noopener noreferrer">Corp Solutions Dev</a> | <a href="https://corpitsolutions.tec.br" target="_blank" rel="noopener noreferrer">corpitsolutions.tec.br</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+    </main>
 
     <script src="src/js/script.js"></script>
 </body>
