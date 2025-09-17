@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Puro Stillu's - Você sonha e nós realizamos</title>
+    <meta name="description" content="Studio de beleza e estética em Pontal do Paraná. Cortes femininos, mechas, hidratações, escova, progressiva, botox capilar, manicure e estética. Agende seu horário!">
+    <meta name="keywords" content="salão de beleza, estética, Pontal do Paraná, cortes femininos, mechas, hidratação, progressiva, botox capilar, manicure, pedicure">
+    <meta name="author" content="Studio Puro Stillu's">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://puro-stillus.com/">
+    <meta property="og:title" content="Studio Puro Stillu's - Você sonha e nós realizamos">
+    <meta property="og:description" content="Studio de beleza e estética em Pontal do Paraná. Mais que cliente, você é o nosso maior patrimônio.">
+    <meta property="og:image" content="https://puro-stillus.com/src/img/background.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://puro-stillus.com/">
+    <meta property="twitter:title" content="Studio Puro Stillu's - Você sonha e nós realizamos">
+    <meta property="twitter:description" content="Studio de beleza e estética em Pontal do Paraná. Mais que cliente, você é o nosso maior patrimônio.">
+    <meta property="twitter:image" content="https://puro-stillus.com/src/img/background.webp">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Puro Stillu's">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="src/img/logo.png">
+    <link rel="apple-touch-icon" href="src/img/logo.png">
+    
+    <link rel="stylesheet" href="src/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="src/img/background.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos HTML5.
+        </video>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+        </div>
+        <div class="loading-text">
+            <h3>Studio Puro Stillu's</h3>
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <!-- Botão flutuante WhatsApp -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5541999994619" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Botão voltar ao topo -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="#home">
+                        <img src="src/img/logo.png" alt="Studio Puro Stillu's">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Quem Somos</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Navigation Drawer -->
+    <div class="nav-drawer" id="navDrawer">
+        <div class="drawer-overlay"></div>
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <button class="drawer-close" id="drawerClose">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="drawer-nav">
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Quem Somos</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="drawer-footer">
+                <div class="drawer-contact">
+                    <p>Studio Puro Stillu's</p>
+                    <p>Pontal do Paraná - PR</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <img src="src/img/background.webp" alt="Studio Puro Stillu's">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title">
+                    ✨ Studio Puro Stillu's - Você sonha e nós realizamos
+                </h1>
+                <p class="hero-subtitle">
+                    💎 Mais que cliente, você é o nosso maior patrimônio
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/5541999994619" target="_blank" class="btn btn-primary">Agende seu horário agora</a>
+                    <a href="#contact" class="btn btn-secondary">Fale conosco</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem Somos -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Quem Somos</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Há 10 anos, o <strong>Studio Puro Stillu's</strong> transforma beleza em autoestima na cidade de Pontal do Paraná, no litoral paranaense. Nosso espaço foi criado para oferecer cuidado, bem-estar e serviços de qualidade em um ambiente acolhedor e moderno.</p>
+                    
+                    <p>Contamos com profissionais especializados em cortes femininos, mechas, hidratações, escova, progressiva, botox capilar e selagem, sempre atualizados com as melhores técnicas e tendências.</p>
+                    
+                    <p>Além disso, oferecemos serviços de manicure e estética, garantindo praticidade e um cuidado completo para realçar a sua beleza.</p>
+                    
+                    <p>No <strong>Studio Puro Stillu's</strong>, acreditamos que cada detalhe faz diferença. Nosso compromisso é valorizar a sua essência, proporcionando momentos de cuidado, transformação e confiança.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Cortes Femininos</h3>
+                    <p>Cortes modernos e personalizados para realçar sua beleza natural</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Mechas e Colorações</h3>
+                    <p>Técnicas avançadas para colorações vibrantes e naturais</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Hidratação e Tratamentos</h3>
+                    <p>Tratamentos capilares para cabelos saudáveis e sedosos</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Escova, Progressiva, Botox</h3>
+                    <p>Alisamentos e tratamentos para cabelos lisos e alinhados</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                    <h3>Manicure e Pedicure</h3>
+                    <p>Cuidados completos para suas unhas sempre perfeitas</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Estética Facial e Corporal</h3>
+                    <p>Tratamentos estéticos para uma pele radiante</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contato</h2>
+            <div class="contact-unified-card">
+                <div class="contact-main-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-content">
+                            <h3>Endereço</h3>
+                            <p>Rodovia Engenheiro Darci Gomes de Morais, 155<br>
+                            Vila Progresso, Pontal do Paraná - PR<br>
+                            CEP: 83255-000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-content">
+                            <h3>Horário de Atendimento</h3>
+                            <p>Segunda a Sábado</p>
+                            <p class="schedule-time">Das 09:00 às 19:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-social-section">
+                    <h3>Nossas Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/puro.stillus_praiadeleste" target="_blank" class="social-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/StudioPuroStillus" target="_blank" class="social-icon facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                    <br>
+                </div>
+                
+                <div class="contact-location-section">
+                    <h3>📍 Nossa Localização</h3>
+                    <div class="map-container">
+                        <div class="map-iframe-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.1234567890!2d-48.4779618!3d-25.6959533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dbeb57626dd777%3A0xf6261e9711211d49!2sRodovia%20Engenheiro%20Darci%20Gomes%20de%20Morais%2C%20155%20-%20Vila%20Progesso%2C%20Pontal%20do%20Paran%C3%A1%20-%20PR%2C%2083255-000!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+                                width="100%" 
+                                height="300" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Localização do Studio Puro Stillu's">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="src/img/logo.png" alt="Studio Puro Stillu's">
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; <span id="currentYear"></span> Studio Puro Stillu's. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/js/script.js"></script>
+</body>
+</html>

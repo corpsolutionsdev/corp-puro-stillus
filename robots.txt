@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://puro-stillus.com/sitemap.xml
+
+# Crawl-delay para evitar sobrecarga do servidor
+Crawl-delay: 1
+
+# Permitir acesso a recursos estáticos
+Allow: /src/css/
+Allow: /src/js/
+Allow: /src/img/
+
+# Bloquear arquivos desnecessários
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /LICENSE
+Disallow: /README.md
+
+# Permitir acesso ao manifest para PWA
+Allow: /manifest.json
