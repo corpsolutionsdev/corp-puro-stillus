@@ -38,16 +38,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Google Analytics -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    -->
 </head>
 <body>
     <!-- Video Background -->
@@ -171,107 +161,124 @@
             <h2 class="section-title">Nossos Serviços</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <h3>Cortes Femininos</h3>
-                    <p>Cortes modernos e personalizados para realçar sua beleza natural</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Mechas e Colorações</h3>
-                    <p>Técnicas avançadas para colorações vibrantes e naturais</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-spa"></i>
-                    </div>
-                    <h3>Hidratação e Tratamentos</h3>
-                    <p>Tratamentos capilares para cabelos saudáveis e sedosos</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3>Escova, Progressiva, Botox</h3>
-                    <p>Alisamentos e tratamentos para cabelos lisos e alinhados</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hand-paper"></i>
-                    </div>
-                    <h3>Manicure e Pedicure</h3>
-                    <p>Cuidados completos para suas unhas sempre perfeitas</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3>Estética Facial e Corporal</h3>
-                    <p>Tratamentos estéticos para uma pele radiante</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galeria de Serviços -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2 class="section-title">Nossos Trabalhos</h2>
-            <div class="gallery-carousel">
-                <div class="carousel-container">
-                    <div class="carousel-track" id="carouselTrack">
-                        <div class="carousel-slide">
-                            <img src="src/img/services/01.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="src/img/services/02.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
-                        </div>
-                        <!-- Duplicar imagens para loop infinito -->
-                        <div class="carousel-slide">
-                            <img src="src/img/services/01.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="src/img/services/02.jpeg" alt="Trabalho realizado no Studio Puro Stillu's" loading="lazy" width="800" height="600">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/progressiva-01.png" alt="Progressiva, Botox, Escova" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/progressiva-02.png" alt="Progressiva, Botox, Escova" loading="lazy" class="carousel-image">
                         </div>
                     </div>
+                    <h3>Progressiva, Botox, Escova</h3>
+                    <p>Tratamentos capilares para cabelos lisos e alinhados</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para *Progressiva, Botox ou Escova* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
                 </div>
                 
-                <!-- Controles do carrossel -->
-                <div class="carousel-controls">
-                    <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Imagem anterior">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-btn next-btn" id="nextBtn" aria-label="Próxima imagem">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/corte-feminino-01.png" alt="Corte Feminino" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/corte-feminino-02.png" alt="Corte Feminino" loading="lazy" class="carousel-image">
+                        </div>
+                    </div>
+                    <h3>Corte Feminino</h3>
+                    <p>Cortes modernos e personalizados para realçar sua beleza</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para *Corte Feminino* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
                 </div>
                 
-                <!-- Indicadores -->
-                <div class="carousel-indicators" id="carouselIndicators">
-                    <button class="indicator active" data-slide="0" aria-label="Ir para imagem 1"></button>
-                    <button class="indicator" data-slide="1" aria-label="Ir para imagem 2"></button>
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/mechas-01.png" alt="Mechas" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/mechas-02.png" alt="Mechas" loading="lazy" class="carousel-image">
+                        </div>
+                    </div>
+                    <h3>Mechas</h3>
+                    <p>Técnicas avançadas para mechas naturais e vibrantes</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para *Mechas* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
                 </div>
-
-                <br>
-            </div>
-            
-            <!-- CTA Button -->
-            <div class="gallery-cta">
-                <h3 class="cta-title">Pronta para se transformar?</h3>
-                <p class="cta-subtitle">Agende agora e garante seu horário preferido!</p>
-                <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário no Studio Puro Stillu's" target="_blank" class="cta-button">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>Agende seu horário agora</span>
-                </a>
-                <p class="cta-note">✨ Resposta rápida e atendimento personalizado</p>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/sobrancelhas-01.png" alt="Sobrancelhas" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/sobrancelhas-02.png" alt="Sobrancelhas" loading="lazy" class="carousel-image">
+                        </div>
+                    </div>
+                    <h3>Sobrancelhas</h3>
+                    <p>Design e modelagem de sobrancelhas para realçar o olhar</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para *Sobrancelhas* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/manicure-01.png" alt="Manicure" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/manicure-02.png" alt="Manicure" loading="lazy" class="carousel-image">
+                        </div>
+                    </div>
+                    <h3>Manicure</h3>
+                    <p>Cuidados completos para unhas sempre perfeitas</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para *Manicure* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/maquiagem-01.png" alt="Maquiagem" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/maquiagem-02.png" alt="Maquiagem" loading="lazy" class="carousel-image">
+                        </div>
+                    </div>
+                    <h3>Maquiagem</h3>
+                    <p>Maquiagem profissional para realçar sua beleza</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para *Maquiagem* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/coloracao-01.png" alt="Coloração" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/coloracao-02.png" alt="Coloração" loading="lazy" class="carousel-image">
+                        </div>
+                    </div>
+                    <h3>Coloração</h3>
+                    <p>Colorações vibrantes e naturais com técnicas avançadas</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para *Coloração* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="carousel-container">
+                            <img src="src/img/services/noiva-01.png" alt="Noiva" loading="lazy" class="carousel-image active">
+                            <img src="src/img/services/noiva-02.png" alt="Noiva" loading="lazy" class="carousel-image">
+                        </div>
+                    </div>
+                    <h3>Noiva</h3>
+                    <p>Pacote completo: penteado, maquiagem e manicure para seu dia especial</p>
+                    <a href="https://wa.me/5541999994619?text=Olá! Gostaria de agendar um horário para o *Pacote Noiva* no Studio Puro Stillu's" target="_blank" class="service-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Serviço
+                    </a>
+                </div>
             </div>
         </div>
     </section>

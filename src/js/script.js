@@ -37,6 +37,80 @@ const VideoController = {
     }
 };
 
+// Módulo de carrossel de imagens automático
+const CarouselController = {
+    init() {
+        this.setupAutoCarousels();
+    },
+    
+    setupAutoCarousels() {
+        const carousels = document.querySelectorAll('.carousel-container');
+        
+        carousels.forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            if (images.length < 2) return;
+            
+            let currentIndex = 0;
+            const totalImages = images.length;
+            let intervalId = null;
+            
+            // Função para alternar as imagens
+            const switchImage = () => {
+                // Remove a classe active da imagem atual
+                images[currentIndex].classList.remove('active');
+                
+                // Avança para a próxima imagem
+                currentIndex = (currentIndex + 1) % totalImages;
+                
+                // Adiciona a classe active para a nova imagem
+                images[currentIndex].classList.add('active');
+            };
+            
+            // Função para iniciar o carrossel
+            const startCarousel = () => {
+                if (intervalId) clearInterval(intervalId);
+                intervalId = setInterval(switchImage, 3000);
+            };
+            
+            // Função para parar o carrossel
+            const stopCarousel = () => {
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+            };
+            
+            // Garantir que a primeira imagem está ativa por padrão
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === 0);
+            });
+            
+            // Inicia o carrossel
+            startCarousel();
+            
+            // Pausa o carrossel quando o mouse está sobre o card
+            const serviceCard = carousel.closest('.service-card');
+            if (serviceCard) {
+                serviceCard.addEventListener('mouseenter', stopCarousel);
+                
+                serviceCard.addEventListener('mouseleave', () => {
+                    // Reinicia o carrossel após 1 segundo
+                    setTimeout(startCarousel, 1000);
+                });
+            }
+            
+            // Pausa o carrossel quando a página não está visível
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopCarousel();
+                } else {
+                    startCarousel();
+                }
+            });
+        });
+    }
+};
+
 // Módulo de navegação
 const NavigationController = {
     init() {
@@ -128,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar módulos
     VideoController.init();
     NavigationController.init();
+    CarouselController.init();
     
     // Botão voltar ao topo
     const backToTop = document.querySelector('#backToTop');
@@ -230,6 +305,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!this.classList.contains('touch-active')) {
                 this.style.transform = 'translateY(0) scale(1)';
             }
+        });
+    });
+    
+    // Efeito de clique nos botões de serviço
+    const serviceButtons = document.querySelectorAll('.service-btn');
+    serviceButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Adicionar efeito de clique
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
         });
     });
     
@@ -425,127 +512,6 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYearElement.textContent = new Date().getFullYear();
     }
     
-    // Carrossel de imagens
-    const carouselTrack = document.getElementById('carouselTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const indicators = document.querySelectorAll('.indicator');
-    
-    if (carouselTrack && prevBtn && nextBtn) {
-        let currentSlide = 0;
-        const totalSlides = 2; // Apenas as imagens originais (sem duplicatas)
-        const slideWidth = 25; // 25% por slide (100% / 4 slides)
-        
-        function updateCarousel() {
-            const translateX = -currentSlide * slideWidth;
-            carouselTrack.style.transform = `translateX(${translateX}%)`;
-            
-            // Atualizar indicadores
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
-        }
-        
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }
-        
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-        
-        // Event listeners para botões
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            pauseAutoPlay();
-        });
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            pauseAutoPlay();
-        });
-        
-        // Event listeners para indicadores
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentSlide = index;
-                updateCarousel();
-                pauseAutoPlay();
-            });
-        });
-        
-        // Auto-play do carrossel (mais rápido e suave)
-        let autoPlayInterval = setInterval(nextSlide, 3000); // Reduzido para 3 segundos
-        
-        // Pausar auto-play no hover e retomar quando sair
-        const carousel = document.querySelector('.gallery-carousel');
-        if (carousel) {
-            carousel.addEventListener('mouseenter', () => {
-                clearInterval(autoPlayInterval);
-            });
-            
-            carousel.addEventListener('mouseleave', () => {
-                autoPlayInterval = setInterval(nextSlide, 3000);
-            });
-        }
-        
-        // Pausar auto-play quando a página não está visível
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                clearInterval(autoPlayInterval);
-            } else {
-                autoPlayInterval = setInterval(nextSlide, 3000);
-            }
-        });
-        
-        // Pausar auto-play quando o usuário interage manualmente
-        function pauseAutoPlay() {
-            clearInterval(autoPlayInterval);
-            // Retomar após 10 segundos de inatividade
-            setTimeout(() => {
-                autoPlayInterval = setInterval(nextSlide, 3000);
-            }, 10000);
-        }
-        
-        // Suporte a touch/swipe
-        let startX = 0;
-        let endX = 0;
-        
-        carouselTrack.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
-        
-        carouselTrack.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = startX - endX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextSlide(); // Swipe left - próxima imagem
-                } else {
-                    prevSlide(); // Swipe right - imagem anterior
-                }
-                pauseAutoPlay();
-            }
-        }
-        
-        // Suporte a teclado
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-                pauseAutoPlay();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-                pauseAutoPlay();
-            }
-        });
-    }
     
     console.log('Studio Puro Stillu\'s - Landing Page carregada com sucesso! ✨');
 });

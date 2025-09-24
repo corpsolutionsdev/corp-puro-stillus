@@ -697,10 +697,13 @@ section {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 20px;
-    padding: 40px 30px;
+    padding: 0;
     text-align: center;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
@@ -711,228 +714,96 @@ section {
     backdrop-filter: blur(15px);
 }
 
-.service-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--gradient-gold-rose);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 2rem;
-    color: var(--color-white);
+.service-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px 15px 0 0;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+/* Carrossel de imagens no hover */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.carousel-image.active {
+    opacity: 1;
+}
+
+.service-card:hover .carousel-image {
+    transform: scale(1.05);
 }
 
 .service-card h3 {
     font-family: var(--font-title);
     font-size: 1.5rem;
     color: var(--color-gold);
-    margin-bottom: 15px;
+    margin: 20px 20px 15px 20px;
+    padding: 0;
 }
 
 .service-card p {
     color: var(--color-ivory);
     line-height: 1.6;
+    margin: 0 20px 15px 20px;
+    padding: 0;
 }
 
-/* Gallery Section */
-.gallery {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
-    padding: var(--section-padding);
-}
-
-.gallery-carousel {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-}
-
-.carousel-container {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-}
-
-.carousel-track {
-    display: flex;
-    width: 400%; /* 4 slides (2 originais + 2 duplicados) */
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-slide {
-    width: 25%; /* 100% / 4 slides */
-    height: 100%;
-    flex-shrink: 0;
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    background: var(--color-black);
-}
-
-/* Controles do carrossel */
-.carousel-controls {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    pointer-events: none;
-}
-
-.carousel-btn {
-    background: rgba(212, 175, 55, 0.8);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    pointer-events: all;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.carousel-btn:hover {
-    background: var(--color-gold);
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-}
-
-.carousel-btn i {
-    color: var(--color-white);
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* Indicadores */
-.carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid var(--color-gold);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.indicator.active {
-    background: var(--color-gold);
-    transform: scale(1.2);
-}
-
-.indicator:hover {
-    background: var(--color-rose);
-    border-color: var(--color-rose);
-}
-
-/* CTA Button */
-.gallery-cta {
-    text-align: center;
-    margin-top: 50px;
-    animation: fadeInUp 0.8s ease-out 0.5s both;
-}
-
-
-.cta-title {
-    font-family: var(--font-title);
-    font-size: 2rem;
-    color: var(--color-gold);
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.cta-subtitle {
-    color: var(--color-ivory);
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.cta-button {
+/* Botão de agendamento de serviço */
+.service-btn {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 8px;
     background: var(--gradient-gold-rose);
     color: var(--color-white);
     text-decoration: none;
-    padding: 20px 40px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1.3rem;
-    transition: all 0.3s ease;
-    border: 2px solid var(--color-gold);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.6s ease;
-}
-
-.cta-button:hover::before {
-    left: 100%;
-}
-
-.cta-button:hover {
-    background: var(--color-rose);
-    border-color: var(--color-rose);
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
-}
-
-.cta-button i {
-    font-size: 1.5rem;
-    animation: pulse 2s infinite;
-}
-
-.cta-button span {
-    font-family: var(--font-text);
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.cta-note {
-    color: var(--color-ivory);
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 600;
     font-size: 0.9rem;
-    margin: 0;
-    font-style: italic;
-    opacity: 0.9;
+    margin: 0 20px 20px 20px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
+
+.service-btn:hover {
+    background: var(--color-rose);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    border-color: var(--color-rose);
+}
+
+.service-btn i {
+    font-size: 1.1rem;
+}
+
 
 /* Contact Section */
 .contact {
@@ -1394,52 +1265,6 @@ section {
         grid-template-columns: 1fr;
     }
     
-    /* Gallery responsivo */
-    .gallery-carousel {
-        max-width: 100%;
-        margin: 0 10px;
-    }
-    
-    .carousel-container {
-        height: 400px;
-    }
-    
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .carousel-btn i {
-        font-size: 14px;
-    }
-    
-    .carousel-controls {
-        padding: 0 10px;
-    }
-    
-    /* CTA Button responsivo */
-    .gallery-cta {
-        margin-top: 30px;
-    }
-    
-    
-    .cta-title {
-        font-size: 1.5rem;
-    }
-    
-    .cta-subtitle {
-        font-size: 1rem;
-    }
-    
-    .cta-button {
-        padding: 15px 30px;
-        font-size: 1.1rem;
-    }
-    
-    .cta-button i {
-        font-size: 1.2rem;
-    }
-    
     /* Footer mobile - esconder logo e centralizar texto */
     .footer-content {
         justify-content: center;
@@ -1476,7 +1301,6 @@ section {
     .back-to-top i {
         font-size: 16px;
     }
-    
 }
 
 @media (max-width: 480px) {
@@ -1493,7 +1317,6 @@ section {
         min-height: 100%;
     }
     
-    
     /* Garantir centralização do background hero em telas muito pequenas */
     .hero-background img {
         object-position: center center;
@@ -1508,54 +1331,27 @@ section {
     }
     
     .service-card {
-        padding: 30px 20px;
+        padding: 0;
     }
     
-    /* Gallery mobile pequeno */
-    .carousel-container {
-        height: 300px;
+    .service-image {
+        height: 220px;
     }
     
-    .carousel-btn {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .carousel-btn i {
-        font-size: 12px;
-    }
-    
-    .indicator {
-        width: 10px;
-        height: 10px;
-    }
-    
-    /* CTA Button mobile pequeno */
-    .gallery-cta {
-        margin-top: 25px;
-    }
-    
-    
-    .cta-title {
+    .service-card h3 {
         font-size: 1.3rem;
+        margin: 15px 15px 10px 15px;
     }
     
-    .cta-subtitle {
+    .service-card p {
         font-size: 0.9rem;
+        margin: 0 15px 10px 15px;
     }
     
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 1rem;
-        gap: 8px;
-    }
-    
-    .cta-button i {
-        font-size: 1.1rem;
-    }
-    
-    .cta-note {
-        font-size: 0.8rem;
+    .service-btn {
+        margin: 0 15px 15px 15px;
+        padding: 10px 16px;
+        font-size: 0.85rem;
     }
     
     .contact-unified-card {
