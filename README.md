@@ -23,7 +23,7 @@ Website institucional para o **Studio Puro Stillu's**, um salão de beleza e est
 
 ## 📁 Estrutura do Projeto
 
-```text
+```
 corp-puro-stillus/
 ├── index.html              # Página principal
 ├── manifest.json           # Configuração PWA
@@ -41,7 +41,7 @@ corp-puro-stillus/
         ├── background.webp# Imagem de fundo
         ├── intro.webp     # Imagem de loading
         └── logo.png       # Logo do studio
-```text
+```
 
 ## 🎨 Design e UX
 
@@ -78,7 +78,7 @@ corp-puro-stillus/
    ```bash
    git clone https://github.com/seu-usuario/corp-puro-stillus.git
    cd corp-puro-stillus
-   ```text
+   ```
 
 2. **Abra o arquivo index.html** em um navegador web ou use um servidor local:
    ```bash
@@ -90,7 +90,7 @@ corp-puro-stillus/
    
    # Usando PHP
    php -S localhost:8000
-   ```text
+   ```
 
 3. **Acesse** `http://localhost:8000` no navegador
 
@@ -114,8 +114,8 @@ corp-puro-stillus/
 - 📍 **Endereço**: Rodovia Engenheiro Darci Gomes de Morais, 155 - Vila Progresso, Pontal do Paraná - PR
 - 📱 **WhatsApp**: (41) 99999-4619
 - 🕒 **Horário**: Segunda a Sábado, das 09:00 às 19:00
-- 📧 **Instagram**: [@puro.stillus_praiadeleste](https://instagram.com/puro.stillus_praiadeleste)
-- 📘 **Facebook**: [StudioPuroStillus](https://facebook.com/StudioPuroStillus)
+- 📧 **Instagram**: [@puro.stillus_praiadeleste](https://www.instagram.com/puro.stillus_praiadeleste/)
+- 📘 **Facebook**: [Divino Gomes Vieira](https://www.facebook.com/divino.gomesvieira.7)
 
 ## 🎯 Serviços Oferecidos
 

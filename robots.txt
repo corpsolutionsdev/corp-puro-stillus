@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://puro-stillus.com/sitemap.xml
+Sitemap: https://studiopurostillus.com.br/sitemap.xml
 
 # Crawl-delay para evitar sobrecarga do servidor
 Crawl-delay: 1
